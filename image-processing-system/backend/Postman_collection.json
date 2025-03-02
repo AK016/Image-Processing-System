@@ -1,0 +1,81 @@
+{
+    "info": {
+      "name": "Image Processing System",
+      "_postman_id": "12345",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Upload CSV",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "file",
+                "type": "file",
+                "src": "<YOUR_CSV_FILE_PATH>"
+              }
+            ]
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/upload",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "upload"]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Check Status",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:3000/api/status/{{requestId}}",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "status", "{{requestId}}"],
+            "variable": [
+              {
+                "key": "requestId",
+                "value": "your-request-id",
+                "description": "Replace with actual request ID"
+              }
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Test Webhook Receiver",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"requestId\": \"your-request-id\",\n  \"status\": \"Completed\",\n  \"outputData\": []\n}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/webhook",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "webhook"]
+          }
+        },
+        "response": []
+      }
+    ]
+  }
+  
